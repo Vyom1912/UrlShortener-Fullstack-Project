@@ -1,3 +1,28 @@
-node_modules
+# Node dependencies
+node_modules/
+
+# Environment variables (SECRETS)
 .env
-links.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output (if you add one later)
+dist/
+build/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Coverage (if you add tests later)
+coverage/
