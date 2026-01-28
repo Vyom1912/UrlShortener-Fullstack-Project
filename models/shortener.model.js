@@ -1,19 +1,20 @@
-import { dbClient } from "../config/db-client.js";
-await dbClient.connect();
-import { env } from "../config/env.js";
+import { db } from "../config/db.js";
 
-const db = dbClient.db(env.MONGODB_DATABASE_NAME);
-
-const shortenerCollection = db.collection("shorteners");
-
+const collection = db.collection("urls");
 export const loadLinks = async () => {
-  return await shortenerCollection.find().toArray();
+  // return await collection.find().toArray();
+  const docs = await collection.find().toArray();
+
+  return docs.reduce((acc, doc) => {
+    acc[doc.shortCode] = doc.url;
+    return acc;
+  }, {});
 };
 
-export const saveLinks = async (links) => {
-  return await shortenerCollection.insertOne(links);
+export const saveLinks = async ({ url, shortCode }) => {
+  return await collection.insertOne({ url, shortCode });
 };
 
 export const getLinkByShortCode = async (shortCode) => {
-  return await shortenerCollection.find({ shortCode: shortCode });
+  return await collection.findOne({ shortCode: shortCode });
 };

@@ -7,8 +7,6 @@ import {
 const router = Router();
 
 router.get("/", getURLShortner);
-
 router.post("/", postURLShortner);
-
 router.get("/:shortCode", redirectToShortCode);
 export const shortenerRouter = router;

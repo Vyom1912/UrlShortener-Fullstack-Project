@@ -1,6 +1,4 @@
 import crypto from "crypto";
-// import path from "path";
-// import { readFile } from "fs/promises";
 import {
   loadLinks,
   saveLinks,
@@ -12,7 +10,7 @@ export const getURLShortner = async (req, res) => {
     const links = await loadLinks();
     return res.render("index", {
       links,
-      host: req.host,
+      host: req.protocol + "://" + req.get("host"),
     });
   } catch (error) {
     console.log(error);

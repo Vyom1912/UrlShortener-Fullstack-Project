@@ -1,5 +1,7 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import { z } from "zod";
-// import { PORT } from "../../env.js";
 
 export const env = z
   .object({
